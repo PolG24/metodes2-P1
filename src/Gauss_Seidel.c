@@ -26,7 +26,7 @@ int main()
     while (!end)
     {
         iterations++;
-        // Jacobi iteration
+        // Gauss-Seidel iteration
         x[0] = (b[0] + n * n * prev_x[1]) / (4 + 2 * n * n);
         for (int i = 1; i < dim - 1; i++)
         {
