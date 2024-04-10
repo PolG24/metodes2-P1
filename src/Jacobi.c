@@ -39,7 +39,7 @@ int main()
         x[dim - 1] = (b[dim - 1] + n * n * prev_x[dim - 2]) / (4 + 2 * n * n);
 
         // If the desired stopping condition is met, stop iterating.
-        printf("%.20lf\n", infinityDistance(x, prev_x, dim));
+        // printf("%.20lf\n", infinityDistance(x, prev_x, dim));
         if (infinityDistance(x, prev_x, dim) < epsilon)
         {
             end = true;
