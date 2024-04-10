@@ -10,7 +10,7 @@ void print_vec(int dim, double vec[])
 {
     for (int i = 0; i < dim; i++)
     {
-        printf("%.5lf", vec[i]);
+        printf("%e", vec[i]);
         if (i < dim - 1)
         {
             printf(", "); // Add a comma and space after each element except the last one.

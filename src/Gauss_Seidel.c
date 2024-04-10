@@ -40,7 +40,7 @@ int main()
         x[dim - 1] = (b[dim - 1] + n * n * x[dim - 2]) / (4 + 2 * n * n);
 
         // If the desired stopping condition is met, stop iterating.
-        // printf("%.20lf\n", infinityDistance(x, prev_x, dim));
+        // printf("%e\n", infinityDistance(x, prev_x, dim));
         if (infinityDistance(x, prev_x, dim) < epsilon)
         {
             end = true;
@@ -48,7 +48,7 @@ int main()
     }
 
     printf("Number of iterations: %d\n", iterations);
-    printf("Approximation of the spectral radius: %.4lf.\n", approximate_spectral_radius(x, prev_x, prev_prev_x, dim));
+    printf("Approximation of the spectral radius: %e.\n", approximate_spectral_radius(x, prev_x, prev_prev_x, dim));
 
     return 0;
 }
