@@ -9,12 +9,13 @@ int main()
     int dim = n - 1; // We'll be working in dimension n - 1.
 
     // They get automatically initialized to all zeros.
-    double prev_prev_x[dim], prev_x[dim], x[dim], b[dim];
+    double prev_prev_x[dim], prev_x[dim], x[dim], b[dim], true_u[dim];
 
-    // Initialize b using f.
+    // Initialize b using f. Initialize true_u (for comparison with the result obtained for each w).
     for (int i = 0; i < dim; i++)
     {
         b[i] = f(n, i + 1);
+        true_u[i] = (i + 1) * sin(2 * PI * (i + 1) / n)/ n ;
     }
 
     // // Check b is well generated.
@@ -61,6 +62,7 @@ int main()
         }
         printf("For w = %.4lf, %d iterations were made.\n", w, iterations);
         printf("Approximation of the spectral radius: %.4lf.\n", approximate_spectral_radius(x, prev_x, prev_prev_x, dim));
+        printf("Error: %.4lf.\n\n", infinityDistance(true_u, x, dim));
 
         // If a new best w has been found, update it and the minimum number of iterations.
         if (iterations < min_iterations)
