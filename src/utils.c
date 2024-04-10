@@ -13,33 +13,39 @@ void print_vec(int dim, double vec[])
         printf("%.5lf", vec[i]);
         if (i < dim - 1)
         {
-            printf(", "); // Add a comma and space after each element except the last one
+            printf(", "); // Add a comma and space after each element except the last one.
         }
     }
 }
 
-// Function to copy an array of doubles
-void copyDoubleArray(double source[], double destination[], int size)
+// Function to copy an array of doubles.
+void copyDoubleArray(double source[], double destination[], int dim)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < dim; i++)
     {
         destination[i] = source[i];
     }
 }
 
-// Function to calculate the infinity distance between two arrays of doubles
-double infinityDistance(double arr1[], double arr2[], int size)
+// Function to calculate the infinity distance between two arrays of doubles.
+double infinityDistance(double arr1[], double arr2[], int dim)
 {
     double maxDiff = 0.0;
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < dim; i++)
     {
-        double diff = fabs(arr1[i] - arr2[i]); // Absolute difference between corresponding elements
+        double diff = fabs(arr1[i] - arr2[i]); // Absolute difference between corresponding elements.
         if (diff > maxDiff)
         {
-            maxDiff = diff; // Update maxDiff if the current difference is greater
+            maxDiff = diff; // Update maxDiff if the current difference is greater.
         }
     }
 
     return maxDiff;
+}
+
+// Function that finds an approximation of the spectral radius.
+double approximate_spectral_radius(double x[], double prev_x[], double prev_prev_x[], int dim)
+{
+    return infinityDistance(x, prev_x, dim) / infinityDistance(prev_x, prev_prev_x, dim);
 }

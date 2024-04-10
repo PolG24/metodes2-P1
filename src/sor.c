@@ -9,7 +9,7 @@ int main()
     int dim = n - 1; // We'll be working in dimension n - 1.
 
     // They get automatically initialized to all zeros.
-    double prev_x[dim], x[dim], b[dim];
+    double prev_prev_x[dim], prev_x[dim], x[dim], b[dim];
 
     // Initialize b using f.
     for (int i = 0; i < dim; i++)
@@ -30,6 +30,7 @@ int main()
         // Reset the vectors to zero.
         for (int i = 0; i < dim; i++)
         {
+            prev_prev_x[i] = 0;
             prev_x[i] = 0;
             x[i] = 0;
         }
@@ -38,6 +39,11 @@ int main()
         end = false;
         while (!end)
         {
+            // Save the prev_x array as the prev_prev_x array for the final spectral radius approximation.
+            copyDoubleArray(prev_x, prev_prev_x, dim);
+            // Save the x array as the previous array.
+            copyDoubleArray(x, prev_x, dim);
+
             iterations++;
             // SOR iteration.
             x[0] = x[0] + w * (-x[0] + (b[0] + n * n * prev_x[1]) / (4 + 2 * n * n));
@@ -52,10 +58,9 @@ int main()
             {
                 end = true;
             }
-
-            // Save the x array as the previous array for the next iteration
-            copyDoubleArray(x, prev_x, dim);
         }
+        printf("For w = %.4lf, %d iterations were made.\n", w, iterations);
+        printf("Approximation of the spectral radius: %.4lf.\n", approximate_spectral_radius(x, prev_x, prev_prev_x, dim));
 
         // If a new best w has been found, update it and the minimum number of iterations.
         if (iterations < min_iterations)
