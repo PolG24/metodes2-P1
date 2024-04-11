@@ -24,7 +24,7 @@ int main()
     bool end = false;
     int iterations;
     int min_iterations = 10000;
-    double best_w;
+    double best_w, spec_rad_approx;
 
     for (double w = 0.1; w < 1.99999; w += 0.0001)
     {
@@ -64,16 +64,18 @@ int main()
         printf("Approximation of the spectral radius: %e.\n", approximate_spectral_radius(x, prev_x, prev_prev_x, dim));
         printf("Error: %e.\n\n", infinityDistance(true_u, x, dim));
 
-        // If a new best w has been found, update it and the minimum number of iterations.
+        // If a new best w has been found, update it, the spectral radius and the minimum number of iterations.
         if (iterations < min_iterations)
         {
-            min_iterations = iterations;
             best_w = w;
+            min_iterations = iterations;
+            spec_rad_approx = approximate_spectral_radius(x, prev_x, prev_prev_x, dim);
         }
     }
 
     printf("Number of iterations: %d.\n", min_iterations);
     printf("Best w: %e.\n", best_w);
+    printf("Spectral radius approximation found with this w: %e.\n", spec_rad_approx);
 
     return 0;
 }
