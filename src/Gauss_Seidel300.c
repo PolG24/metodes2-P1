@@ -4,8 +4,8 @@
 
 int main()
 {
-    double epsilon = 1.0 / 100000;
-    int n = 30;
+    double epsilon = 1.0 / 10000000000;
+    int n = 300;
     int dim = n - 1; // We'll be working in dimension n - 1.
 
     // They get automatically initialized to all zeros.

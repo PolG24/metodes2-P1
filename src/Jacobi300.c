@@ -4,8 +4,8 @@
 
 int main()
 {
-    double epsilon = 1.0 / 100000;
-    int n = 30;
+    double epsilon = 1.0 / 10000000000;
+    int n = 300;
     int dim = n - 1; // We'll be working in dimension n - 1.
 
     // They get automatically initialized to all zeros.
@@ -29,15 +29,14 @@ int main()
         copyDoubleArray(prev_x, prev_prev_x, dim);
         // Save the x array as the previous array.
         copyDoubleArray(x, prev_x, dim);
-
         iterations++;
-        // Gauss-Seidel iteration
+        // Jacobi iteration
         x[0] = (b[0] + n * n * prev_x[1]) / (4 + 2 * n * n);
         for (int i = 1; i < dim - 1; i++)
         {
-            x[i] = (b[i] + n * n * (x[i - 1] + prev_x[i + 1])) / (4 + 2 * n * n);
+            x[i] = (b[i] + n * n * (prev_x[i - 1] + prev_x[i + 1])) / (4 + 2 * n * n);
         }
-        x[dim - 1] = (b[dim - 1] + n * n * x[dim - 2]) / (4 + 2 * n * n);
+        x[dim - 1] = (b[dim - 1] + n * n * prev_x[dim - 2]) / (4 + 2 * n * n);
 
         // If the desired stopping condition is met, stop iterating.
         // printf("%e\n", infinityDistance(x, prev_x, dim));

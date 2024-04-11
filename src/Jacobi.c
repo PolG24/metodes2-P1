@@ -46,7 +46,7 @@ int main()
         }
     }
 
-    printf("Number of iterations: %d\n", iterations);
+    printf("Number of iterations: %d.\n", iterations);
     printf("Approximation of the spectral radius: %e.\n", approximate_spectral_radius(x, prev_x, prev_prev_x, dim));
 
     return 0;
