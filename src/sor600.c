@@ -56,7 +56,7 @@ int main()
             x[dim - 1] = x[dim - 1] + w * (-x[dim - 1] + (b[dim - 1] + n * n * x[dim - 2]) / (4 + 2 * n * n));
 
             // If the desired stopping condition is met, stop iterating.
-            if (infinityDistance(x, prev_x, dim) < epsilon || iterations > 409346)
+            if (infinityDistance(x, prev_x, dim) < epsilon || iterations > 2081)
             {
                 end = true;
             }
